@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for music in musics_list %}
+    <a href="{{ music.get_absolute_url }}">{{ music }}</a><br>
+{% endfor %}
+</body>
+</html>

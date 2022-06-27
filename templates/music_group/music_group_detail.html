@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <div>
+        {% for mgl in musicgroup.music.all%}
+            <div>
+                <img src="{{ mgl.song_image.url }}" style="width: 48px; height: 48px; border-radius: 15%;">
+            </div>
+            <div>
+                <span style='font-weight: bold; font-size: 18px; font-family: Roboto, Lucida Grande, DejaVu Sans, Bitstream Vera Sans, Verdana, Arial, sans-serif;'>{{ mgl.executor }}</span> - <span style="font-weight: bolder; font-size: 14px; font-family: Roboto, Lucida Grande, DejaVu Sans, Bitstream Vera Sans, Verdana, Arial, sans-serif;">{{ mgl.song_name }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
