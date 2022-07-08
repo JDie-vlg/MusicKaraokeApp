@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from rest_framework.decorators import action
-
+from rest_framework.views import APIView
 from .models import Musics, MusicGroup
 from .modelserializers import MusicsSerializer, MusicGroupSerializer
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
@@ -49,3 +49,15 @@ class MusicGroupApiView(viewsets.ModelViewSet):
     queryset = MusicGroup.objects.all()
     serializer_class = MusicGroupSerializer
 
+class DeletingApi(APIView):
+    def delete(self, request):
+        id = request.data['id']
+        try:
+            item = Musics.objects.get(id=id)
+            if item:
+                item.delete()
+                data = {'response': 'Deleted successfully'}
+                return Response(data, status=200)
+        except Musics.DoesNotExist:
+            data = {'response': 'ToDoAppModel Does not exist'}
+            return Response(data, status=400)
